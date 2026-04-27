@@ -22,16 +22,22 @@
       border-radius: 50%;
       border: 4px solid white;
       object-fit: cover;
-     object-position: center 5%;
+      object-position: center 5%;
       margin-bottom: 20px;
     }
     header h1 { font-size: 40px; }
-    header p { font-size: 18px; margin-top: 8px; color: #f0f0f0; }
+    .typing {
+      font-size: 20px;
+      margin-top: 8px;
+      color: #f0f0f0;
+      height: 30px;
+    }
     nav {
       background-color: #0f3460;
       display: flex;
       justify-content: center;
-      gap: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
       padding: 15px;
       position: sticky;
       top: 0;
@@ -46,6 +52,15 @@
       transition: background 0.3s;
     }
     nav a:hover { background-color: #e94560; }
+    .theme-btn {
+      background-color: #e94560;
+      border: none;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
     .section {
       padding: 50px 40px;
       max-width: 900px;
@@ -89,14 +104,78 @@
     }
     .project-card:hover { transform: translateY(-5px); }
     .project-card h3 { color: #e94560; margin-bottom: 10px; }
+    .internship-card {
+      background-color: #0f3460;
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid #e94560;
+      margin-top: 15px;
+    }
+    .internship-card h3 { color: #e94560; margin-bottom: 10px; }
     .contact p { margin-top: 12px; font-size: 18px; }
     .contact a { color: #e94560; text-decoration: none; }
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      background-color: #e94560;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+    .social-btn:hover { transform: scale(1.05); }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #e94560;
+      background-color: #0f3460;
+      color: white;
+      font-size: 16px;
+    }
+    .contact-form textarea { height: 120px; resize: none; }
+    .contact-form button {
+      background-color: #e94560;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .contact-form button:hover { transform: scale(1.02); }
     footer {
       text-align: center;
       padding: 25px;
       background: linear-gradient(135deg, #e94560, #0f3460);
       margin-top: 40px;
       font-size: 16px;
+    }
+    /* Light Mode */
+    body.light {
+      background-color: #f0f0f0;
+      color: #1a1a2e;
+    }
+    body.light p { color: #333; }
+    body.light .project-card,
+    body.light .internship-card { background-color: #ddd; }
+    body.light .contact-form input,
+    body.light .contact-form textarea {
+      background-color: #fff;
+      color: #1a1a2e;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -109,15 +188,17 @@
   <header>
     <img src="photo.jpeg" alt="Mangaleswari M">
     <h1>Mangaleswari M</h1>
-    <p>ECE Final Year Student | Software & Hardware Enthusiast</p>
+    <div class="typing" id="typing"></div>
   </header>
 
   <nav>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#internship">Internship</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
+    <button class="theme-btn" onclick="toggleTheme()">🌙 Dark/Light</button>
   </nav>
 
   <div class="section" id="about">
@@ -131,9 +212,11 @@
       <span class="skill">Core Electronics</span>
       <span class="skill">Hardware</span>
       <span class="skill">Software</span>
+      <span class="skill">Python</span>
       <span class="skill">HTML & CSS</span>
       <span class="skill">Git & GitHub</span>
-      <span class="skill">Coding</span>
+      <span class="skill">Voice Automation</span>
+      <span class="skill">Raspberry Pi</span>
     </div>
   </div>
 
@@ -141,13 +224,23 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="project-card">
-        <h3>Portfolio Website</h3>
-        <p>Personal portfolio website built using HTML, CSS and hosted on GitHub Pages.</p>
+        <h3>🖥️ Wireless Noticeboard Using Raspberry Pi</h3>
+        <p>Final Year Project — Built a wireless noticeboard system using Raspberry Pi and Python. Messages can be sent wirelessly and displayed on screen.</p>
       </div>
       <div class="project-card">
-        <h3>More Coming Soon!</h3>
-        <p>Currently working on exciting new projects in Electronics and Software!</p>
+        <h3>🎙️ Voice Controlled Home Automation</h3>
+        <p>Mini Project — Designed a home automation system controlled by voice commands to operate home appliances efficiently.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="section" id="internship">
+    <h2>Internship</h2>
+    <div class="internship-card">
+      <h3>🏭 Wheels India Private Limited, Chennai</h3>
+      <p>📅 Duration: 1 Month</p>
+      <p>💼 Role: Quality Checking & Data Entry Intern</p>
+      <p>📍 Location: Chennai</p>
     </div>
   </div>
 
@@ -162,11 +255,66 @@
     <h2>Contact Me</h2>
     <p>📧 <a href="mailto:mangaleswarimurugan546@gmail.com">mangaleswarimurugan546@gmail.com</a></p>
     <p>📞 8754703546</p>
+    <div class="social-links">
+      <a class="social-btn" href="https://www.linkedin.com/in/mangaleswari-murugan-751392260" target="_blank">🔗 LinkedIn</a>
+      <a class="social-btn" href="https://github.com/Mangaleswari12" target="_blank">🐙 GitHub</a>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="உன் பேர்" id="name">
+      <input type="email" placeholder="உன் Email" id="email">
+      <textarea placeholder="Message...)" id="message"></textarea>
+      <button onclick="sendMessage()">Send Message 🚀</button>
+    </div>
   </div>
 
   <footer>
     <p>© 2026 Mangaleswari M | All Rights Reserved</p>
   </footer>
+
+  <script>
+    // Typing Animation
+    const texts = ["ECE Final Year Student", "Hardware Enthusiast", "Software Developer", "Core Electronics Lover", "Coder 💻"];
+    let i = 0, j = 0, current = "", isDeleting = false;
+    function type() {
+      current = texts[i];
+      if (isDeleting) {
+        document.getElementById("typing").textContent = current.substring(0, j--);
+      } else {
+        document.getElementById("typing").textContent = current.substring(0, j++);
+      }
+      if (!isDeleting && j === current.length + 1) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+      } else if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % texts.length;
+        setTimeout(type, 500);
+      } else {
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+    }
+    type();
+
+    // Dark/Light Mode
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+    }
+
+    // Contact Form
+    function sendMessage() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      if (name && email && message) {
+        alert("Message sent! Thank you " + name + " 😊");
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      } else {
+        alert("Please fill all fields!");
+      }
+    }
+  </script>
 
 </body>
 </html>
